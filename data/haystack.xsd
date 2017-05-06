@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" attributeFormDefault="unqualified" elementFormDefault="qualified">
+  <xs:element name="meta">
+    <xs:complexType mixed="true">
+      <xs:sequence>
+        <xs:element ref="meta" maxOccurs="unbounded" minOccurs="0"/>
+      </xs:sequence>
+      <xs:attribute type="xs:string" name="publication" use="optional"/>
+      <xs:attribute type="xs:date" name="pdate" use="optional"/>
+      <xs:attribute type="xs:time" name="ptime" use="optional"/>
+      <xs:attribute type="xs:anyURI" name="author" use="optional"/>
+      <xs:attribute type="xs:string" name="authorname" use="optional"/>
+      <xs:attribute type="xs:anyURI" name="url" use="optional"/>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="haystack">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="meta"  maxOccurs="unbounded" minOccurs="1"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
