@@ -1,16 +1,26 @@
 # rss-miner
 
-This is a quick Proof of Concept analysis piece that aims to answer the following question:
-
-> What is the purpose of the analysis?
+This project aims to be a collection of tools for taking content from RSS feeds and converting it
+to Full Facts haystack format. 
 
 ### Authors
 
 * cmusselle
 
+## Status 
+
+Early days, but work is in progress. Check back soon!
+
 ## Quick Start
 
-Experiments are contained in individual Jupyter notebooks in the `notebooks/` directory. 
+TODO ...
 
-Supporting code is in a python package in `notebooks/lib`
+# Ideas for data sources 
+
+* From mainstream polictics news sites like bbc, the guardian, financial times etc.  
+* Election focused blogs
+
+
+
+
 
