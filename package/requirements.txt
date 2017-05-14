@@ -1,0 +1,6 @@
+beautifulsoup4==4.6.0
+feedparser==5.2.1
+pyyaml==3.12
+requests==2.13.0
+tinydb-serialization==1.0.4
+tinydb==3.2.3
