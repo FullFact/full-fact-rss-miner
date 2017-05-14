@@ -1,6 +1,6 @@
 import feedparser
 from tinydb import Query
-
+import time
 
 def max_entry_date(feed):
     """Return the max published time in all entries of a feed"""
@@ -42,10 +42,13 @@ def fetch_new_entries(source, db):
         # Add new meta data and return all entries
         new_feed = feedparser.parse(url)
 
+        # check last updated field exists and populate with latest article if not
+        updated, updated_parsed = get_last_updated_times(new_feed)
+
         data = {
             'name': name,
-            'updated': new_feed.feed.updated,
-            'updated_parsed': new_feed.feed.updated_parsed,
+            'updated': updated,
+            'updated_parsed': updated_parsed,
             'title': new_feed.feed.title,
             'subtitle': new_feed.feed.subtitle,
             'url': url,
@@ -80,10 +83,14 @@ def fetch_new_entries(source, db):
 
             if entries:
                 # Update metadata
+
+                # check last updated field exists and populate with latest article if not
+                updated, updated_parsed = get_last_updated_times(new_feed)
+
                 data = {
                     'name': name,
-                    'updated': new_feed.feed.updated,
-                    'updated_parsed': new_feed.feed.updated_parsed,
+                    'updated': updated,
+                    'updated_parsed': updated_parsed,
                     'title': new_feed.feed.title,
                     'subtitle': new_feed.feed.subtitle,
                     'url': url,
@@ -95,3 +102,16 @@ def fetch_new_entries(source, db):
                 db.table('meta').update(data, eids=[result.eid])
 
     return entries
+
+
+def get_last_updated_times(feed):
+
+    if not feed.feed.get('updated'):
+        updated_parsed = max_entry_date(feed)
+        # Format as: 'Sun, 14 May 2017 14:35:21 GMT'
+        updated = time.strftime('%a, %d %b %Y %H:%M:%S %Z')
+    else:
+        updated_parsed = feed.feed.updated_parsed
+        updated = feed.feed.updated
+
+    return updated, updated_parsed

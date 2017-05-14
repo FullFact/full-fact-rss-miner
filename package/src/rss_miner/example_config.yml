@@ -1,0 +1,48 @@
+config:
+    output-folder: 'haystack'
+    meta-db-name: 'metadb'
+    request-headers:
+        User-Agent: RSS-Miner Application
+
+feeds:
+    # News Outlets --------------------------------------------------------------------------
+
+    # Politics section of the The BBC 
+    # http://www.bbc.co.uk/news/politics
+    bbc-politics:
+        url: http://feeds.bbci.co.uk/news/politics/rss.xml
+        content-tag: div.story-body__inner
+
+    # Politics section of The Independent 
+    # http://www.independent.co.uk/news/uk/politics
+    the-independent-politics:
+        url: http://www.independent.co.uk/news/uk/politics/rss
+        content-tag: div.main-content-column
+
+    # Politics Section of The Guardian
+    # https://www.theguardian.com/politics/
+    the-guardian-politics:
+        url: https://www.theguardian.com/politics/rss
+        content-tag: div.content__main
+
+    # Party aligned Websites  --------------------------------------------------------------
+
+    # Conservative Home http://www.conservativehome.com/
+    conservativehome:
+        url: http://www.conservativehome.com/feed
+        content-tag: section.post_content
+
+    # LaborList http://labourlist.org/
+    labourlist:
+        url: http://feeds.feedburner.com/LabourListLatestPosts
+        content-tag: div.entry
+
+    # Libral Demecrat Voice http://www.libdemvoice.org/
+    libdemvoice: 
+        url: http://www.libdemvoice.org/feed
+        content-tag: div.entry-content
+
+    # Wings over Scotland https://wingsoverscotland.com
+    wingsoverscotland:
+        url: https://wingsoverscotland.com/feed/
+        content-tag: div.entry
