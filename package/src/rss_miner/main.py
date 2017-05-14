@@ -65,13 +65,16 @@ def main(args):
     haystack = new_haystack(batch=now, id='RSS-Feeds')
 
     for source in data_sources:
-        print(source['name'],  end='')
+        print(source['name'] + ' - ',  end='')
         sys.stdout.flush()
 
         # Try to get more entries
         entries = fetch_new_entries(source=source, db=db)
 
         if entries:
+
+            print('Fetching content ',  end='')
+            sys.stdout.flush()
 
             for ent in entries:
 
