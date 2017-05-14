@@ -1,22 +1,20 @@
 """An RSS feed mining tool developed for Full Fact https://fullfact.org/"""
 
+import argparse
 import pathlib
 import sys
 import time
 from xml.etree.ElementTree import ElementTree
-import argparse
-from tinydb import Query, TinyDB
-
-from .haystack import new_haystack, write_to_haystack
-from .nlp import paragraphs_to_sentences
-from .source_articles import fetch_article_content
-from .source_feeds import fetch_new_entries
-from .storage import insert_entry, serialization
 
 import yaml
-# from validator import validate
+from tinydb import TinyDB
 
 from . import PKG_DIR
+from .content import fetch_article_content
+from .feeds import fetch_new_entries
+from .haystack import new_haystack, write_to_haystack
+from .nlp import paragraphs_to_sentences
+from .storage import insert_entry, serialization
 
 
 def read_config(filename):
