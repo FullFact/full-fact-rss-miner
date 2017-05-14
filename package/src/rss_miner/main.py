@@ -85,7 +85,8 @@ def main(args):
                 # Split into individual sentences
                 sentences = paragraphs_to_sentences(paragraphs)
 
-                write_to_haystack(haystack, source=source, entity=ent, sentences=sentences)
+                if sentences:
+                    write_to_haystack(haystack, source=source, entity=ent, sentences=sentences)
 
                 # Store metadata in data base
                 insert_entry(ent, db)
