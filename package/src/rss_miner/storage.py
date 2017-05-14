@@ -1,9 +1,5 @@
 
-from tinydb import TinyDB, Query
-from tinydb.storages import JSONStorage
 from tinydb_serialization import SerializationMiddleware
-
-from datetime import datetime
 
 from time import struct_time
 import time
