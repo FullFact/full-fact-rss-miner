@@ -2,6 +2,7 @@ import feedparser
 from tinydb import Query
 import time
 
+
 def max_entry_date(feed):
     """Return the max published time in all entries of a feed"""
     entry_pub_dates = tuple(
@@ -67,7 +68,10 @@ def fetch_new_entries(source, db):
         new_feed = feedparser.parse(url, etag=etag, modified=modified)
 
         entries = []
-        if new_feed.entries:
+
+        if not new_feed.entries:
+            print('No new articles')
+        else:
             # Additonal filtering to check using the etag or last modified date worked.
             # This depends on whether the server is setup to make use of them so is
             # out of our control.
@@ -78,8 +82,9 @@ def fetch_new_entries(source, db):
                          if e.get('published_parsed') > prev_max_date]  # noqa
 
             n_filtered = len(new_feed.entries) - len(entries)
-            print('{} articles filtered out as already processed'.format(n_filtered))
-            print('{} new articles'.format(len(entries)))
+            print('{} articles filtered out as already processed. {} new articles'.format(
+                  n_filtered, len(entries)
+                  ))
 
             if entries:
                 # Update metadata
